@@ -9,4 +9,5 @@ interface TravelAgencyService {
     public void printPassengerList(String packageId);
     public void printDetailsOfPassenger(Passenger passenger);
     public void printAvailableActivity(TravelPackage travelPackage);
+    public void enrollInActivity(int passengerNumber,String packageId,String activityName, String destination);
 }

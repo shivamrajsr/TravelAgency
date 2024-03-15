@@ -16,25 +16,21 @@ public class Destination {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<Activity> getListOfActivities() {
         return listOfActivities;
-    }
-
-    public void setListOfActivities(List<Activity> listOfActivities) {
-        this.listOfActivities = listOfActivities;
     }
 
     public void addActivity(Activity activity){
         this.listOfActivities.add(activity);
     }
-    
-    public void removeActivity(Activity activity){
-        this.listOfActivities.remove(activity);
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Destination: " + name + "\n");
+            for (Activity activity : listOfActivities) {
+                sb.append(activity.getName() + "\n");
+            }
+            return sb.toString();
     }
 
-    
 }

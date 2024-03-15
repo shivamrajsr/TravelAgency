@@ -1,14 +1,14 @@
-// package TravelAgency.Models;
+package TravelAgency.Models;
 
-// public class StandardPassenger extends Passenger{
+public class StandardPassenger extends Passenger{
 
-//     public StandardPassenger(String name, int passengerNumber, int balance, MembershipType type) {
-//         super(name, passengerNumber, balance, type);
-//     }
-    
+    public StandardPassenger(String name, int passengerNumber, int balance, MembershipType type) {
+        super(name, passengerNumber, balance, type);
+    }
 
-
-
-
-    
-// }
+    @Override
+    public double moneyPaidForActivity(double activityCost){
+       return activityCost;
+    }
+     
+}

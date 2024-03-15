@@ -8,18 +8,16 @@ public class Activity {
    private String description;
    private int cost;
    private int capacity;
-   private Destination destination;
    private boolean occupied;
-   private List<Passenger> listPassengersSigned;
+   private List<Passenger> listOfPassengersSigned;
    
-public Activity(String name, String description, int cost, int capacity,Destination destination) {
+public Activity(String name, String description, int cost, int capacity) {
     this.name = name;
     this.description = description;
     this.cost = cost;
     this.capacity = capacity;
-    this.destination = destination;
     this.occupied = false;
-    this.listPassengersSigned = new ArrayList<>();
+    this.listOfPassengersSigned = new ArrayList<>();
 }
 
 
@@ -56,46 +54,47 @@ public void setCapacity(int capacity) {
     this.capacity = capacity;
 }
 
-public Destination getDestination() {
-    return destination;
-}
-
-public void setDestination(Destination destination) {
-    this.destination = destination;
-}
-
-
 public boolean isOccupied() {
-    return capacity >= listPassengersSigned.size() ? false: true;
+    return capacity >= listOfPassengersSigned.size() ? false: true;
 }
 
 // no of tickets left for this activity
 public int getAvailibility(){
-    return capacity - listPassengersSigned.size();
+    return capacity - listOfPassengersSigned.size();
 
 }
 public void setOccupied(){
-    if(listPassengersSigned.size()==capacity) 
+    if(listOfPassengersSigned.size()==capacity) 
     this.occupied = true;
 }
 
 public void addPassenger(Passenger pg){
-    this.listPassengersSigned.add(pg);
-    // everytime it calls setOccupied when a passenger sign up for it
+    if (isOccupied()) {
+        throw new IllegalStateException("No tickets left.");
+    }
+   else{
+    double moneyToBePaid = pg.moneyPaidForActivity(cost);
+    boolean joined = pg.signUpForActivity(moneyToBePaid);
+    if(joined){
+        this.listOfPassengersSigned.add(pg);
+        pg.addActivity(this);
+    }
+    else{
+        System.out.println("not enough balance");
+    }
+
+   }
     setOccupied();
 
 }
 
 
-
 public List<Passenger> getListPassengersSigned() {
-    return listPassengersSigned;
+    return listOfPassengersSigned;
 }
 
-
-
 public void setListPassengersSigned(List<Passenger> listPassengersSigned) {
-    this.listPassengersSigned = listPassengersSigned;
+    this.listOfPassengersSigned = listPassengersSigned;
 }
 
 

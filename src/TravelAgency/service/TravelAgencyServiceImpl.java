@@ -3,6 +3,8 @@ package TravelAgency.service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import javax.naming.NameNotFoundException;
+
 import TravelAgency.Models.Activity;
 import TravelAgency.Models.Destination;
 import TravelAgency.Models.Passenger;
@@ -60,6 +62,8 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
         
     }
 
+
+
     @Override
     public void printAvailableActivity(TravelPackage travelPackage) {
 
@@ -84,6 +88,49 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
         for(Activity activity : passenger.getActivitiesSignedFor()){
             System.out.println(activity.getName() + " happening at destination: "+ activity.getDestination().getName());
         }
+    }
+    
+    @Override
+    public void enrollInActivity(int passengerNumber,String packageId,String activityName, String destination) {
+          TravelPackage tp = travelAgency.getPackage(packageId);
+          Passenger psg = null;
+          for(Passenger pg: tp.getPassengers()){
+            if(pg.getPassengerNumber() == passengerNumber){
+                  psg =  pg;
+                  break;
+            }
+          }
+
+          if(psg == null) {
+            System.out.println("Passenger not enrolled in this travel Package");
+          }
+          Destination destination2 = null;
+          for(Destination  dstn: tp.getItenary()){
+            if(dstn.getName()==destination){
+                    destination2 = dstn;
+                    break;
+            }
+          }
+          Activity activity = null;
+          for(Activity ac : destination2.getListOfActivities()){
+            if(ac.getName() == activityName){
+                activity = ac;
+                break;
+            }
+          }
+          activity.addPassenger(psg);
+
+
+
+          
+
+
+          
+
+
+
+
+
     }
 
     

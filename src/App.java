@@ -12,6 +12,14 @@ import TravelAgency.service.TravelAgencyServiceImpl;
 public class App {
     
 
+    /**
+     * <h1>Hello, World!</h1>
+     * The App program implements an application that
+     * lets travel agency manage their itenary and passengers.
+     * <p>
+     * @author  Shivam raj
+     * @version 1.0
+     */
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
 

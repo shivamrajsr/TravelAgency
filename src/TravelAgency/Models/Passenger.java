@@ -11,8 +11,6 @@ public class Passenger {
     private MembershipType type;
     private List<Activity> activitiesSignedFor;
     
-    
-
     public Passenger(String name, int passengerNumber, double balance, MembershipType type) {
         this.name = name;
         this.passengerNumber = passengerNumber;
@@ -58,9 +56,9 @@ public class Passenger {
     public void setType(MembershipType type) {
         this.type = type;
     }
-
+    
     public double moneyPaidForActivity(double activityCost){
-
+         System.out.println("this is called");
         switch(this.type){
             case STANDARD:  
                   return activityCost;
@@ -72,10 +70,9 @@ public class Passenger {
                   return -1;     
         }
     }
-    public boolean signUpForActivity(double activityCost){
-
-        double discountedCost = moneyPaidForActivity(activityCost);
-        return deductBalance(discountedCost);
+    public boolean signUpForActivity(double finalCost){
+        //double discountedCost = moneyPaidForActivity(activityCost);
+        return deductBalance(finalCost);
     }
 
     public boolean deductBalance(double amount) {
