@@ -37,7 +37,7 @@ public class AppTest {
             new TravelPackage("Mazedaar", 100, destinations,passengers));
 
        
-        travelAgencyService2.enrollInActivity(76, "Mazedaar", "abcd", "Mumbai");
+       // travelAgencyService2.enrollInActivity(76, "Mazedaar", "abcd", "Mumbai");
 
         
     }

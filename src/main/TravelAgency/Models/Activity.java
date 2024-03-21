@@ -1,5 +1,7 @@
 package main.TravelAgency.Models;
 
+import main.TravelAgency.utils.Exceptions.NotEnoughBalanceException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +70,7 @@ public void setOccupied(){
     this.occupied = true;
 }
 
-public void addPassenger(Passenger pg){
+public void addPassenger(Passenger pg) throws NotEnoughBalanceException {
     if (isOccupied()) {
         throw new IllegalStateException("No tickets left.");
     }
@@ -77,10 +79,11 @@ public void addPassenger(Passenger pg){
     boolean joined = pg.signUpForActivity(moneyToBePaid);
     if(joined){
         this.listOfPassengersSigned.add(pg);
-        pg.addActivity(this);
+        System.out.println("passenger added in tis activity!!");
     }
     else{
-        System.out.println("not enough balance");
+        System.out.println("not enough balance case:");
+        throw new NotEnoughBalanceException(pg.getName());
     }
 
    }

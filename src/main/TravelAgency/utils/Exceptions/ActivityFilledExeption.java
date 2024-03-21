@@ -2,8 +2,8 @@ package main.TravelAgency.utils.Exceptions;
 
 import main.TravelAgency.Models.Activity;
 
-class ActivityFilled extends CapacityReachedException{
-    public ActivityFilled(Activity activity){
+class ActivityFilledException extends CapacityReachedException{
+    public ActivityFilledException(Activity activity){
         super(activity.toString());
     }
 }

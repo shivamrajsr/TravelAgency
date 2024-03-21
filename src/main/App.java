@@ -19,11 +19,9 @@ public class App {
      * lets travel agency manage their itenary and passengers.
      * <p>
      * @author  Shivam raj
-     * @version 1.0
      */
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
-
         Constants.InitializeConstants();
 
         List<Destination> destinations = Constants.getDestinations();
@@ -37,6 +35,11 @@ public class App {
         travelAgencyService.printItenary("Mazedaar");
         travelAgencyService.printPassengerList("bxhhd");
         travelAgencyService.printPassengerList("Mazedaar");
-        travelAgencyService.enrollInActivity(76, "Mazedaar", "abcd", "Mumbai");
+        travelAgencyService.enrollInActivity(1, "Mazedaar", "game1", "Delhi");
+        travelAgencyService.enrollInActivity(1, "Mazedaar", "game2", "Delhi");
+        travelAgencyService.enrollInActivity(1, "Mazedaar", "game3", "Delhi");
+
+
+
     }
 }

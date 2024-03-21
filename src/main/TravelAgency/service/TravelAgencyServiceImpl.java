@@ -2,12 +2,14 @@ package main.TravelAgency.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 import main.TravelAgency.Models.Activity;
 import main.TravelAgency.Models.Destination;
 import main.TravelAgency.Models.Passenger;
 import main.TravelAgency.Models.TravelPackage;
 import main.TravelAgency.Repo.TravelAgency;
+import main.TravelAgency.utils.Exceptions.NotEnoughBalanceException;
 import main.TravelAgency.utils.Exceptions.PassengerNotFoundException;
 
 public class TravelAgencyServiceImpl implements TravelAgencyService {
@@ -102,7 +104,7 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
     }
     
     @Override
-    public void enrollInActivity(int passengerNumber,String packageId,String activityName, String destination) throws PassengerNotFoundException {
+    public void enrollInActivity(int passengerNumber,String packageId,String activityName, String destination) throws PassengerNotFoundException, NoSuchElementException, NotEnoughBalanceException {
         
           TravelPackage tp = travelAgency.getPackage(packageId);
           Passenger psg = null;
@@ -127,14 +129,20 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
           }
           Activity activity = null;
           for(Activity ac : destination2.getListOfActivities()){
-            if(ac.getName() == activityName){
+            if(Objects.equals(ac.getName(), activityName)){
                 activity = ac;
                 break;
             }
           }
-          activity.addPassenger(psg);
-       
 
+        if (activity != null) {
+            activity.addPassenger(psg);
+            psg.addActivity(activity);
+        }
+        else{
+            throw new NoSuchElementException("activity with above name not found");
+
+        }
 
     }
 
